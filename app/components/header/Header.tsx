@@ -11,9 +11,15 @@ import Notification from './Notification';
 import ZoomOutIn from './ZoomOutIn';
 import UserMenu from './UserMenu';
 import { usePathname } from 'next/navigation';
+import { Admin } from '@prisma/client';
 
+interface HeaderProps {
+    currentUser: Admin
+}
 
-const Header = () => {
+const Header: React.FC<HeaderProps> = ({
+    currentUser
+}) => {
     const [openNotification, setOpenNotification] = useState(false)
     const location = usePathname()
     console.log(location)
@@ -75,7 +81,7 @@ const Header = () => {
                 <ul className='nav user-menu'>
                     <Notification />
                     <ZoomOutIn />
-                    <UserMenu />
+                    <UserMenu user={currentUser} />
                 </ul>
             </div>
         </>

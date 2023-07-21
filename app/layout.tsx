@@ -14,6 +14,8 @@ import "../assets/plugins/select2/css/select2.min.css"
 import "../assets/plugins/fontawesome/css/fontawesome.min.css";
 import "../assets/plugins/fontawesome/css/all.min.css";
 import ClientOnly from './components/ClientOnly';
+import ToastContainer from './context/ToasterContainer';
+import AuthContext from './context/AuthContext';
 
 export const metadata: Metadata = {
   title: 'School Managment System',
@@ -27,9 +29,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ClientOnly>
-          {children}
-        </ClientOnly>
+        <AuthContext>
+          <ClientOnly>
+            <ToastContainer />
+            {children}
+          </ClientOnly>
+        </AuthContext>
       </body>
     </html>
   )

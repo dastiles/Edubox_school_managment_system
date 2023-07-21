@@ -3,9 +3,16 @@
 import Input from '@/app/components/register/Input'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
 const ForgotPassword = () => {
     const router = useRouter()
+
+    const { register, handleSubmit, formState: { errors }, } = useForm<FieldValues>({
+        defaultValues: {
+            email: '',
+        }
+    })
     return (
         <>
             {/* Main Wrapper */}
@@ -29,8 +36,12 @@ const ForgotPassword = () => {
                                     <form>
 
                                         <Input label="Enter your registered email address"
+                                            id='email'
                                             type="email"
-                                            icon_string="fa-envelope" />
+                                            icon_string="fa-envelope"
+                                            errors={errors}
+                                            register={register}
+                                        />
                                         <div className="form-group">
                                             <button className="btn btn-primary btn-block" type="submit">
                                                 Reset My Password

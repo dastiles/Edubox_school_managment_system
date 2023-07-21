@@ -1,9 +1,16 @@
 'use client'
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link'
-import React from 'react'
+import { signOut } from 'next-auth/react'
+import { Admin } from '@prisma/client';
 
-const UserMenu = () => {
+interface UserMenuProps {
+    user: Admin
+}
+
+const UserMenu: React.FC<UserMenuProps> = ({
+    user
+}) => {
     return (
 
         <li className="nav-item dropdown has-arrow new-user-menus">
@@ -15,12 +22,12 @@ const UserMenu = () => {
                 <span className="user-img">
                     <img
                         className="rounded-circle"
-                        src='img/profiles/avatar-01.jpg'
+                        src='/img/profiles/avatar-01.jpg'
                         width={31}
-                        alt="Ryan Taylor"
+                        alt="user profile"
                     />
                     <div className="user-text">
-                        <h6>Ryan Taylor</h6>
+                        <h6>{user.username}</h6>
                         <p className="text-muted mb-0">Administrator</p>
                     </div>
                 </span>
@@ -29,23 +36,23 @@ const UserMenu = () => {
                 <div className="user-header">
                     <div className="avatar avatar-sm">
                         <img
-                            src='img/profiles/avatar-01.jpg'
+                            src='/img/profiles/avatar-01.jpg'
                             alt="User Image"
                             className="avatar-img rounded-circle"
                         />
                     </div>
                     <div className="user-text">
-                        <h6>Ryan Taylor</h6>
+                        <h6>{user.username}</h6>
                         <p className="text-muted mb-0">Administrator</p>
                     </div>
                 </div>
-                <Link className="dropdown-item" href="/profile">
+                <Link className="dropdown-item" href={`/profile/${user.id}`}>
                     My Profile
                 </Link>
                 <Link className="dropdown-item" href="/inbox">
                     Inbox
                 </Link>
-                <Link className="dropdown-item" href="/auth/register">
+                <Link className="dropdown-item" href="#" onClick={() => signOut()}>
                     Logout
                 </Link>
             </div>

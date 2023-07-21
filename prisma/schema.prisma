@@ -1,0 +1,117 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  username String
+  password String
+  email    String   @unique
+  location String
+  about    String
+  phone    String
+  created  DateTime @default(now())
+}
+
+model Student {
+  id            String       @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  address       String
+  phone_number  String
+  password      String
+  email         String       @unique
+  date_of_birth DateTime
+  gender        String
+  medical_info  String?
+  Enrollment    Enrollment[]
+}
+
+model Teacher {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  address        String
+  phone_number   String
+  password       String
+  email          String   @unique
+  date_of_birth  DateTime
+  gender         String
+  subject_taught String
+}
+
+model Course {
+  id            String       @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  code          String
+  grade_level   String
+  credit_hours  Int
+  prerequisites String?
+  Enrollment    Enrollment[]
+  Grade         Grade[]
+  Exam          Exam[]
+}
+
+model Enrollment {
+  id                String       @id @default(auto()) @map("_id") @db.ObjectId
+  student           Student      @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  studentId         String       @db.ObjectId
+  course            Course       @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseId          String       @db.ObjectId
+  enrollment_date   DateTime
+  enrollment_status String
+  grade             String?
+  Attendance        Attendance[]
+  Grade             Grade[]
+}
+
+model Attendance {
+  id                String     @id @default(auto()) @map("_id") @db.ObjectId
+  enrollment        Enrollment @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
+  enrollmentId      String     @db.ObjectId
+  date              DateTime
+  attendance_status String
+  notes             String?
+}
+
+model Grade {
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
+  enrollment   Enrollment @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
+  enrollmentId String     @db.ObjectId
+  course       Course     @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseId     String     @db.ObjectId
+  grade        String
+  grade_date   DateTime
+}
+
+model Fee {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  amount         Float
+  due_date       DateTime
+  payment_status String
+}
+
+model Library {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  title            String
+  author           String
+  isbn             String
+  publisher        String
+  publication_date DateTime
+}
+
+model Exam {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseId    String   @db.ObjectId
+  exam_name   String
+  exam_date   DateTime
+  total_marks Int
+}
