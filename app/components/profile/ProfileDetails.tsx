@@ -19,8 +19,8 @@ const ProfileDetails: React.FC<ProfileDetailsProps> = ({
                         <span>Personal Details</span>
                         <Link
                             className="edit-link"
-                            // data-bs-toggle="modal"
-                            href="#"
+
+                            href={`/profile/${user.id}/editprofile`}
                         >
                             <i className="far fa-edit me-1" />
                             Edit
@@ -29,7 +29,7 @@ const ProfileDetails: React.FC<ProfileDetailsProps> = ({
                     <ProfileText name='Name' value={user.username} />
                     <ProfileText name='Date of Birth' value='24 Jul 1983' />
                     <ProfileText name='Email ID' value={user.email} />
-                    <ProfileText name='Mobile' value='0771315239' />
+                    <ProfileText name='Mobile' value={user.phone} />
                     <ProfileText name='Email ID' value={user.email} />
                 </div>
             </div>

@@ -55,7 +55,7 @@ const ProfileWrapper: React.FC<ProfileWrapperProps> = ({
                                     <div className="about-text">Lorem ipsum dolor sit amet.</div>
                                 </div>
                                 <div className="col-auto profile-btn">
-                                    <Link href="#" className="btn btn-primary">
+                                    <Link href={`/profile/${user.id}/editprofile`} className="btn btn-primary">
                                         Edit
                                     </Link>
                                 </div>

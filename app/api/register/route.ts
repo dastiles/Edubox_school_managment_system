@@ -13,6 +13,12 @@ export async function POST(request: Request) {
             return new NextResponse('Please Fill in all inputs', { status: 400 })
         }
 
+
+        const regex_email = /^\S+@\S+\.\S+$/
+        if (!regex_email.test(email)) {
+            return new NextResponse('Invalid email', { status: 400 })
+        }
+
         if (password !== confirm_password) {
             return new NextResponse('Password does not match', { status: 400 })
         }

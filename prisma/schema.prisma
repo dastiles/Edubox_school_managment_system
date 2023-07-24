@@ -12,6 +12,7 @@ datasource db {
 
 model Admin {
   id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  // id       String   @id @default(uuid())
   username String
   password String
   email    String   @unique
@@ -23,6 +24,7 @@ model Admin {
 
 model Student {
   id            String       @id @default(auto()) @map("_id") @db.ObjectId
+  // id            String       @id @default(uuid())
   name          String
   address       String
   phone_number  String
@@ -36,6 +38,7 @@ model Student {
 
 model Teacher {
   id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  //id             String   @id @default(uuid())
   name           String
   address        String
   phone_number   String
@@ -48,6 +51,7 @@ model Teacher {
 
 model Course {
   id            String       @id @default(auto()) @map("_id") @db.ObjectId
+  //id            String       @id @default(uuid())
   name          String
   code          String
   grade_level   String
@@ -60,6 +64,7 @@ model Course {
 
 model Enrollment {
   id                String       @id @default(auto()) @map("_id") @db.ObjectId
+  //id                String       @id @default(uuid())
   student           Student      @relation(fields: [studentId], references: [id], onDelete: Cascade)
   studentId         String       @db.ObjectId
   course            Course       @relation(fields: [courseId], references: [id], onDelete: Cascade)
@@ -73,6 +78,7 @@ model Enrollment {
 
 model Attendance {
   id                String     @id @default(auto()) @map("_id") @db.ObjectId
+  //id                String     @id @default(uuid())
   enrollment        Enrollment @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
   enrollmentId      String     @db.ObjectId
   date              DateTime
@@ -82,6 +88,7 @@ model Attendance {
 
 model Grade {
   id           String     @id @default(auto()) @map("_id") @db.ObjectId
+  //id           String     @id @default(uuid())
   enrollment   Enrollment @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
   enrollmentId String     @db.ObjectId
   course       Course     @relation(fields: [courseId], references: [id], onDelete: Cascade)
@@ -92,6 +99,7 @@ model Grade {
 
 model Fee {
   id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  // id             String   @id @default(uuid())
   name           String
   amount         Float
   due_date       DateTime
@@ -100,6 +108,7 @@ model Fee {
 
 model Library {
   id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  //id               String   @id @default(uuid())
   title            String
   author           String
   isbn             String
@@ -109,6 +118,7 @@ model Library {
 
 model Exam {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  //id          String   @id @default(uuid())
   course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
   courseId    String   @db.ObjectId
   exam_name   String
