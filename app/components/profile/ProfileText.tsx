@@ -1,8 +1,8 @@
 'use client'
 
 interface ProfileTextProps {
-    name: string
-    value: String
+    name?: string
+    value?: String
 }
 
 const ProfileText: React.FC<ProfileTextProps> = ({
