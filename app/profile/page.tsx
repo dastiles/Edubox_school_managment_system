@@ -10,7 +10,7 @@ import Sidebar from '@/app/components/sidebar/Sidebar'
 
 const Profile = async () => {
     const currentUser = await getCurrentUser()
-    const getUser = await getCurrentUserById()
+
     return (
         <div className="main-wrapper">
             {/* Header */}
