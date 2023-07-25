@@ -10,7 +10,7 @@ import Sidebar from '@/app/components/sidebar/Sidebar'
 
 const Profile = async () => {
     const currentUser = await getCurrentUser()
-
+    const updatedUser = await getCurrentUserById()
     return (
         <div className="main-wrapper">
             {/* Header */}
@@ -18,7 +18,7 @@ const Profile = async () => {
 
             {/* Sidebar */}
             <Sidebar />
-            <ProfileWrapper user={currentUser!} />
+            <ProfileWrapper user={updatedUser!} />
         </div>
     )
 }
