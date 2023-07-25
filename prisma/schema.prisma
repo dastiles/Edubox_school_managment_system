@@ -11,29 +11,33 @@ datasource db {
 }
 
 model Admin {
-  id       String   @id @default(auto()) @map("_id") @db.ObjectId
-  // id       String   @id @default(uuid())
-  username String
-  password String
-  email    String   @unique
-  location String
-  about    String
-  phone    String
-  created  DateTime @default(now())
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  //id        String    @id @default(uuid())
+  username  String
+  password  String
+  email     String    @unique
+  location  String?
+  about     String?
+  phone     String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  students  Student[]
 }
 
 model Student {
-  id            String       @id @default(auto()) @map("_id") @db.ObjectId
-  // id            String       @id @default(uuid())
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  //id            String    @id @default(uuid())
+  adminId       String    @db.ObjectId
   name          String
-  address       String
-  phone_number  String
-  password      String
-  email         String       @unique
-  date_of_birth DateTime
-  gender        String
+  address       String?
+  phone_number  String?
+  password      String?
+  email         String    @unique
+  date_of_birth DateTime?
+  gender        String?
   medical_info  String?
-  Enrollment    Enrollment[]
+  // Enrollment    Enrollment[]
+  admin         Admin     @relation(fields: [adminId], references: [id], onDelete: Cascade)
 }
 
 model Teacher {
@@ -49,79 +53,79 @@ model Teacher {
   subject_taught String
 }
 
-model Course {
-  id            String       @id @default(auto()) @map("_id") @db.ObjectId
-  //id            String       @id @default(uuid())
-  name          String
-  code          String
-  grade_level   String
-  credit_hours  Int
-  prerequisites String?
-  Enrollment    Enrollment[]
-  Grade         Grade[]
-  Exam          Exam[]
-}
+// model Course {
+// id            String       @id @default(auto()) @map("_id") @db.ObjectId
+//   //id            String       @id @default(uuid())
+//   name          String
+//   code          String
+//   grade_level   String
+//   credit_hours  Int
+//   prerequisites String?
+//   Enrollment    Enrollment[]
+//   Grade         Grade[]
+//   Exam          Exam[]
+// }
 
-model Enrollment {
-  id                String       @id @default(auto()) @map("_id") @db.ObjectId
-  //id                String       @id @default(uuid())
-  student           Student      @relation(fields: [studentId], references: [id], onDelete: Cascade)
-  studentId         String       @db.ObjectId
-  course            Course       @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  courseId          String       @db.ObjectId
-  enrollment_date   DateTime
-  enrollment_status String
-  grade             String?
-  Attendance        Attendance[]
-  Grade             Grade[]
-}
+// model Enrollment {
+//   id                String       @id @default(auto()) @map("_id") @db.ObjectId
+//   //id                String       @id @default(uuid())
+//   student           Student      @relation(fields: [studentId], references: [id], onDelete: Cascade)
+//   studentId         String      @db.ObjectId
+//   course            Course       @relation(fields: [courseId], references: [id], onDelete: Cascade)
+//   courseId          String       @db.ObjectId
+//   enrollment_date   DateTime
+//   enrollment_status String
+//   grade             String?
+//   Attendance        Attendance[]
+//   Grade             Grade[]
+// }
 
-model Attendance {
-  id                String     @id @default(auto()) @map("_id") @db.ObjectId
-  //id                String     @id @default(uuid())
-  enrollment        Enrollment @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
-  enrollmentId      String     @db.ObjectId
-  date              DateTime
-  attendance_status String
-  notes             String?
-}
+// model Attendance {
+//   id                String     @id @default(auto()) @map("_id") @db.ObjectId
+//   //id                String     @id @default(uuid())
+//   enrollment        Enrollment @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
+//   enrollmentId      String     
+//   date              DateTime
+//   attendance_status String
+//   notes             String?
+// }
 
-model Grade {
-  id           String     @id @default(auto()) @map("_id") @db.ObjectId
-  //id           String     @id @default(uuid())
-  enrollment   Enrollment @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
-  enrollmentId String     @db.ObjectId
-  course       Course     @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  courseId     String     @db.ObjectId
-  grade        String
-  grade_date   DateTime
-}
+// model Grade {
+//   //id           String     @id @default(auto()) @map("_id") @db.ObjectId
+//   id           String     @id @default(uuid())
+//   enrollment   Enrollment @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
+//   enrollmentId String   
+//   course       Course     @relation(fields: [courseId], references: [id], onDelete: Cascade)
+//   courseId     String    
+//   grade        String
+//   grade_date   DateTime
+// }
 
-model Fee {
-  id             String   @id @default(auto()) @map("_id") @db.ObjectId
-  // id             String   @id @default(uuid())
-  name           String
-  amount         Float
-  due_date       DateTime
-  payment_status String
-}
+// model Fee {
+//   //id             String   @id @default(auto()) @map("_id") @db.ObjectId
+//    id             String   @id @default(uuid())
+//   name           String
+//   amount         Float
+//   due_date       DateTime
+//   payment_status String
+// }
 
-model Library {
-  id               String   @id @default(auto()) @map("_id") @db.ObjectId
-  //id               String   @id @default(uuid())
-  title            String
-  author           String
-  isbn             String
-  publisher        String
-  publication_date DateTime
-}
+// model Library {
+//  // id               String   @id @default(auto()) @map("_id") @db.ObjectId
+//   id               String   @id @default(uuid())
+//   title            String
+//   author           String
+//   isbn             String
+//   publisher        String
+//   publication_date DateTime
+// }
 
-model Exam {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  //id          String   @id @default(uuid())
-  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  courseId    String   @db.ObjectId
-  exam_name   String
-  exam_date   DateTime
-  total_marks Int
-}
+// model Exam {
+//   //id          String   @id @default(auto()) @map("_id") @db.ObjectId
+//   id          String   @id @default(uuid())
+//   course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+//   courseId    String   
+//   exam_name   String
+//   exam_date   DateTime
+//   total_marks Int
+// }

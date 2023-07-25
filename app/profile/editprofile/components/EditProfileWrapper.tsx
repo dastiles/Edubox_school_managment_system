@@ -6,6 +6,7 @@ import Inputs from './Inputs'
 import { useState } from 'react'
 import { toast } from 'react-hot-toast'
 import axios from 'axios'
+import { useRouter } from 'next/navigation'
 
 interface EditProfileWrapperProps {
     user: Admin
@@ -15,6 +16,7 @@ const EditProfileWrapper: React.FC<EditProfileWrapperProps> = ({
     user
 }) => {
     const [isLoading, setIsLoading] = useState(false)
+    const router = useRouter()
     const { register, handleSubmit, formState: { errors }, } = useForm<FieldValues>({
         defaultValues: {
             username: user.username,
@@ -30,6 +32,10 @@ const EditProfileWrapper: React.FC<EditProfileWrapperProps> = ({
         console.log(data)
         setIsLoading(true)
         axios.post('/api/profile/editprofile', data)
+            .then(() => {
+                toast.success('Profile successfully updated')
+                router.push('/profile')
+            })
             .catch((error) => toast.error(error.response.data))
             .finally(() => setIsLoading(false))
     }
@@ -44,7 +50,7 @@ const EditProfileWrapper: React.FC<EditProfileWrapperProps> = ({
                                 <h3 className="page-title">Edit My Profile</h3>
                                 <ul className="breadcrumb">
                                     <li className="breadcrumb-item">
-                                        <Link href="#">My Profile</Link>
+                                        <Link href="/profile">My Profile</Link>
                                     </li>
                                     <li className="breadcrumb-item active">Edit My Profile</li>
                                 </ul>

@@ -14,7 +14,7 @@ interface InputsProps {
 
 const Inputs: React.FC<InputsProps> = ({
     label,
-    type = 'email',
+    type = 'text',
     disabled,
     id,
     register,
@@ -30,7 +30,6 @@ const Inputs: React.FC<InputsProps> = ({
                 <input
                     className="form-control"
                     type="text"
-
                     id={id} disabled={disabled}  {...register(id, { required })}
                 />
             </div>

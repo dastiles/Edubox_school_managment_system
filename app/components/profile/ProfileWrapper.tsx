@@ -50,12 +50,12 @@ const ProfileWrapper: React.FC<ProfileWrapperProps> = ({
                                     <h4 className="user-name mb-0">{user.username}</h4>
                                     <h6 className="text-muted">UI/UX Design Team</h6>
                                     <div className="user-Location">
-                                        <i className="fas fa-map-marker-alt" /> Florida, United States
+                                        <i className="fas fa-map-marker-alt" /> {user.location}
                                     </div>
-                                    <div className="about-text">Lorem ipsum dolor sit amet.</div>
+                                    <div className="about-text">{user.about}</div>
                                 </div>
                                 <div className="col-auto profile-btn">
-                                    <Link href={`/profile/${user.id}/editprofile`} className="btn btn-primary">
+                                    <Link href={`/profile/editprofile`} className="btn btn-primary">
                                         Edit
                                     </Link>
                                 </div>

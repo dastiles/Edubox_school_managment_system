@@ -20,7 +20,7 @@ const ProfileDetails: React.FC<ProfileDetailsProps> = ({
                         <Link
                             className="edit-link"
 
-                            href={`/profile/${user.id}/editprofile`}
+                            href={`/profile/editprofile`}
                         >
                             <i className="far fa-edit me-1" />
                             Edit
@@ -30,7 +30,7 @@ const ProfileDetails: React.FC<ProfileDetailsProps> = ({
                     <ProfileText name='Date of Birth' value='24 Jul 1983' />
                     <ProfileText name='Email ID' value={user.email} />
                     <ProfileText name='Mobile' value={user.phone} />
-                    <ProfileText name='Email ID' value={user.email} />
+                    {/* <ProfileText name='Email ID' value={user.email} /> */}
                 </div>
             </div>
         </div>
