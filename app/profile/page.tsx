@@ -1,5 +1,5 @@
 import getCurrentUser from '@/app/actions/getCurrentUser'
-import getUserInfor from '@/app/actions/getUserInfor'
+import getCurrentUserById from '@/app/actions/getUserInfor'
 import Header from '@/app/components/header/Header'
 import ProfileWrapper from '@/app/components/profile/ProfileWrapper'
 import Sidebar from '@/app/components/sidebar/Sidebar'
@@ -10,7 +10,7 @@ import Sidebar from '@/app/components/sidebar/Sidebar'
 
 const Profile = async () => {
     const currentUser = await getCurrentUser()
-    const getUser = await getUserInfor()
+    const getUser = await getCurrentUserById()
     return (
         <div className="main-wrapper">
             {/* Header */}
