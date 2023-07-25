@@ -2,7 +2,7 @@
 
 interface ProfileTextProps {
     name?: string
-    value?: String
+    value?: string
 }
 
 const ProfileText: React.FC<ProfileTextProps> = ({

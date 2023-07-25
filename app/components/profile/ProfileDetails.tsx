@@ -26,10 +26,10 @@ const ProfileDetails: React.FC<ProfileDetailsProps> = ({
                             Edit
                         </Link>
                     </h5>
-                    <ProfileText name='Name' value={user.username} />
+                    <ProfileText name='Name' value={user.username!} />
                     <ProfileText name='Date of Birth' value='24 Jul 1983' />
-                    <ProfileText name='Email ID' value={user.email} />
-                    <ProfileText name='Mobile' value={user.phone} />
+                    <ProfileText name='Email ID' value={user.email!} />
+                    <ProfileText name='Mobile' value={user.phone!} />
                     {/* <ProfileText name='Email ID' value={user.email} /> */}
                 </div>
             </div>
