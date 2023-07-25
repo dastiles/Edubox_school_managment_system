@@ -46,7 +46,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                         <p className="text-muted mb-0">Administrator</p>
                     </div>
                 </div>
-                <Link className="dropdown-item" href={`/profile/${user.id}`}>
+                <Link className="dropdown-item" href={`/profile`}>
                     My Profile
                 </Link>
                 <Link className="dropdown-item" href="/inbox">
