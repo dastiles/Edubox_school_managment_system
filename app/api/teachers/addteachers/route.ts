@@ -11,9 +11,9 @@ export async function POST(request: Request) {
             return new NextResponse('Something went wrong', { status: 400 })
         }
         const body = await request.json()
-        const { email, name, address, phone_number } = body
+        const { email, name, address, phone_number, subject_taught, date_of_birth } = body
 
-        if (!email || !name || !phone_number || !address) {
+        if (!email || !name || !phone_number || !address || !subject_taught || !date_of_birth) {
             return new NextResponse('Please Fill in all inputs', { status: 400 })
         }
         const regex_email = /^\S+@\S+\.\S+$/
@@ -21,29 +21,31 @@ export async function POST(request: Request) {
             return new NextResponse('Invalid email', { status: 400 })
         }
 
-        const uniqueEmail = await prisma.student.findUnique({
+        const uniqueEmail = await prisma.teacher.findUnique({
             where: {
                 email: email
             }
         })
 
         if (uniqueEmail) {
-            return new NextResponse('Another Student has that email', { status: 400 })
+            return new NextResponse('Another Teacher has that email', { status: 400 })
         }
 
 
 
-        const student = await prisma.student.create({
+        const teacher = await prisma.teacher.create({
             data: {
                 email,
                 adminId: user.id,
                 name,
                 address,
                 phone_number,
+                date_of_birth,
+                subject_taught,
 
             }
         })
-        return NextResponse.json(user)
+        return NextResponse.json(teacher)
     } catch (error: any) {
         console.log(error)
     }

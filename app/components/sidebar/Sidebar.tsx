@@ -126,8 +126,7 @@ const Sidebar = () => {
                                         }}
                                     >
                                         <SideBarLink link='/' title='Admin Dashboard' />
-                                        <SideBarLink link="/teacherdashboard" title=' Teachers Dashboard' />
-                                        <SideBarLink link='/studentdashboard' title='Students Dashboard' />
+
 
                                     </ul>
                                 ) : (
@@ -136,9 +135,9 @@ const Sidebar = () => {
                             </li>
                             <li
                                 className={`${"/students" === pathName ||
-                                    "/studentsview" === pathName ||
-                                    "/addstudent" === pathName ||
-                                    "/editstudent" === pathName
+                                    "/students/studentsview" === pathName ||
+                                    "/students/addstudent" === pathName ||
+                                    "/students/editstudent" === pathName
                                     ? "active submenu"
                                     : "submenu"
                                     }`}
@@ -152,9 +151,9 @@ const Sidebar = () => {
                                         }}
                                     >
                                         <SideBarLink link='/students' title='Student List' />
-                                        <SideBarLink link='/studentsview' title='Student View' />
-                                        <SideBarLink link='/addstudent' title='Student Add' />
-                                        <SideBarLink link='/editstudent' title='Student Edit' />
+                                        {/* <SideBarLink link='/students/studentsview' title='Student View' /> */}
+                                        <SideBarLink link='/students/addstudent' title='Student Add' />
+
 
                                     </ul>
                                 ) : (
@@ -162,10 +161,8 @@ const Sidebar = () => {
                                 )}
                             </li>
                             <li
-                                className={`${"/teacherslist" === pathName ||
-                                    "/teachersprofile" === pathName ||
-                                    "/addteacher" === pathName ||
-                                    "/editteacher" === pathName
+                                className={`${"/teachers" === pathName ||
+                                    "/teachers/addteacher" === pathName
                                     ? "active submenu"
                                     : "submenu"
                                     }`}
@@ -177,17 +174,17 @@ const Sidebar = () => {
                                             display: isSideMenu == "Teachers" ? "block" : "none",
                                         }}
                                     >
-                                        <SideBarLink link='/teacherslist' title='Teacher List' />
-                                        <SideBarLink link='/teachersprofile' title='Teacher View' />
-                                        <SideBarLink link='/addteacher' title='Teacher Add' />
-                                        <SideBarLink link='/editteacher' title='Teacher Edit' />
+                                        <SideBarLink link='/teachers' title='Teacher List' />
+
+                                        <SideBarLink link='/teachers/addteacher' title='Teacher Add' />
+
 
                                     </ul>
                                 ) : (
                                     ""
                                 )}
                             </li>
-                            <li
+                            {/* <li
                                 className={`${"/department" === pathName ||
                                     "/adddepartment" === pathName ||
                                     "/editdepartment" === pathName
@@ -266,7 +263,7 @@ const Sidebar = () => {
                                 ) : (
                                     ""
                                 )}
-                            </li>
+                            </li> */}
                         </ul>
                         {/* /Main Menu*/}
                         {/* Management */}

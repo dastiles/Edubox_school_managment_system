@@ -19,6 +19,8 @@ export async function POST(request: Request) {
             return new NextResponse('Invalid email', { status: 400 })
         }
 
+
+
         if (password !== confirm_password) {
             return new NextResponse('Password does not match', { status: 400 })
         }

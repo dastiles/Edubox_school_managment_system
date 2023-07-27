@@ -1,6 +1,6 @@
 'use client'
 
-import Inputs from '@/app/profile/editprofile/components/Inputs'
+import Inputs from '@/app/components/Inputs'
 import Link from 'next/link'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'

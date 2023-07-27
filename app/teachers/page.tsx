@@ -1,14 +1,13 @@
-import React from 'react'
 import Sidebar from '../components/sidebar/Sidebar'
 import Header from '../components/header/Header'
 import getUpdatedUser from '../actions/getUpdatedUser'
 import ContentWrapper from '../components/ContentWrapper'
-import StudentViewWrapper from './studentgrid/studentsview/components/StudentViewWrapper'
-import getStudents from '../actions/getStudents'
+import TeachersViewWrapper from './TeachersViewWrapper'
+import getTeachers from '../actions/getTeachers'
 
-const StudentsView = async () => {
+const TeachersView = async () => {
     const user = await getUpdatedUser()
-    const students = await getStudents()
+    const teachers = await getTeachers()
 
     return (
         <>
@@ -19,8 +18,8 @@ const StudentsView = async () => {
                 <Sidebar />
                 {/* Page Wrapper */}
 
-                <ContentWrapper title='Students' titleActive='All Students' href='/students' linkTitle='Student' >
-                    <StudentViewWrapper students={students!} />
+                <ContentWrapper title='Teachers' titleActive='All Teachers' href='/' linkTitle='Dashboard' >
+                    <TeachersViewWrapper teachers={teachers!} />
                 </ContentWrapper>
 
 
@@ -28,5 +27,4 @@ const StudentsView = async () => {
         </>
     )
 }
-
-export default StudentsView
+export default TeachersView

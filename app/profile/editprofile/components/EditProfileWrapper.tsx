@@ -2,7 +2,7 @@
 import { Admin } from '@prisma/client'
 import Link from 'next/link'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
-import Inputs from './Inputs'
+import Inputs from '../../../components/Inputs'
 import { useState } from 'react'
 import { toast } from 'react-hot-toast'
 import axios from 'axios'
