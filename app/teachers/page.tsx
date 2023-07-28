@@ -19,7 +19,10 @@ const TeachersView = async () => {
                 {/* Page Wrapper */}
 
                 <ContentWrapper title='Teachers' titleActive='All Teachers' href='/' linkTitle='Dashboard' >
-                    <TeachersViewWrapper teachers={teachers!} />
+                    {teachers ? (
+                        <TeachersViewWrapper teachers={teachers!} />
+                    ) : <p>No teachers found</p>}
+
                 </ContentWrapper>
 
 

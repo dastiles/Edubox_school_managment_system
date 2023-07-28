@@ -20,7 +20,10 @@ const StudentsView = async () => {
                 {/* Page Wrapper */}
 
                 <ContentWrapper title='Students' titleActive='All Students' href='/students' linkTitle='Student' >
-                    <StudentViewWrapper students={students!} />
+                    {students ? (
+                        <StudentViewWrapper students={students!} />
+                    ) : <p>No students found</p>}
+
                 </ContentWrapper>
 
 
