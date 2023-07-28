@@ -9,7 +9,7 @@ export default async function getUpdatedUser(
         const user = await getCurrentUser()
 
         if (!user) {
-            throw new Error()
+            return null
         }
 
         const getUser = await prisma.admin.findUnique({
