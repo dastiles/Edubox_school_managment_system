@@ -12,6 +12,44 @@ const StudentViewWrapper: React.FC<StudentViewWrapperProps> = ({
 }) => {
     return (
         <>
+            <div className="student-group-form">
+                <div className="row">
+                    <div className="col-lg-3 col-md-6">
+                        <div className="form-group">
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Search by ID ..."
+                            />
+                        </div>
+                    </div>
+                    <div className="col-lg-3 col-md-6">
+                        <div className="form-group">
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Search by Name ..."
+                            />
+                        </div>
+                    </div>
+                    <div className="col-lg-4 col-md-6">
+                        <div className="form-group">
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Search by Phone ..."
+                            />
+                        </div>
+                    </div>
+                    <div className="col-lg-2">
+                        <div className="search-student-btn">
+                            <button type="button" className="btn btn-primary">
+                                Search
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div className="row">
                 <div className="col-sm-12">
                     <div className="card card-table comman-shadow">

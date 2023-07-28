@@ -34,6 +34,7 @@ const EditProfileWrapper: React.FC<EditProfileWrapperProps> = ({
         axios.post('/api/profile/editprofile', data)
             .then(() => {
                 toast.success('Profile successfully updated')
+                router.refresh()
                 router.push('/profile')
             })
             .catch((error) => toast.error(error.response.data))
@@ -75,18 +76,20 @@ const EditProfileWrapper: React.FC<EditProfileWrapperProps> = ({
                                         <Inputs id='username' label='Full Name' errors={errors} register={register} />
                                         <Inputs id='phone' label='Phone Number' errors={errors} register={register} />
                                         <Inputs id='location' label='Address' errors={errors} register={register} />
-                                        <Inputs id='about' label='Bio' errors={errors} register={register} />
 
-
-
-
-
-
-
-
-
-
-
+                                        <div className="col-12">
+                                            <div className="form-group local-forms">
+                                                <label>
+                                                    Bio
+                                                </label>
+                                                <textarea
+                                                    className="form-control"
+                                                    placeholder="Enter Bio"
+                                                    {...register('about', { required: false })}
+                                                    id='about'
+                                                ></textarea>
+                                            </div>
+                                        </div>
 
                                         <div className="col-12">
                                             <div className="student-submit">

@@ -33,6 +33,7 @@ const TeacherAddWrapper = () => {
         axios.post('/api/teachers/addteachers', data)
             .then(() => {
                 toast.success('Teacher Successfully Added ')
+                router.refresh()
                 router.push('/teachers')
             })
             .catch((error) => toast.error(error.response.data))
@@ -69,11 +70,11 @@ const TeacherAddWrapper = () => {
                                 <div className="col-12">
                                     <div className="form-group local-forms">
                                         <label>
-                                            Address <span className="login-danger">*</span>
+                                            Bio
                                         </label>
                                         <textarea
                                             className="form-control"
-                                            placeholder="Enter address"
+                                            placeholder="Enter Bio"
                                         ></textarea>
                                     </div>
                                 </div>

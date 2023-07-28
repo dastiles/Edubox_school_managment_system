@@ -28,6 +28,7 @@ const StudentAddWrapper = () => {
         axios.post('/api/students/studentsadd', data)
             .then(() => {
                 toast.success('Successfully added student')
+                router.refresh()
                 router.push('/')
             })
             .catch((error) => toast.error(error.response.data))
