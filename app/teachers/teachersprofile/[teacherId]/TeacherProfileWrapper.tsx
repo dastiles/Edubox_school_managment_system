@@ -100,10 +100,10 @@ const TeacherProfileWrapper: React.FC<TeacherProfileWrapperProps> = ({
                           title={teacher.gender!}
                           heading="Gender"
                         />
-                        <StudentActivity
+                        {/* <StudentActivity
                           title={teacher.subject_taught!}
                           heading="Department"
-                        />
+                        /> */}
                         <StudentActivity
                           title={teacher.address!}
                           heading="Address"
