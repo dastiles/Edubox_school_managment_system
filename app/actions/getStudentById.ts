@@ -15,6 +15,7 @@ export default async function getStudentById(params: Iparams) {
 
         const { studentId } = params
 
+
         const student = await prisma.student.findUnique({
             where: {
                 id: studentId

@@ -66,7 +66,7 @@ const StudentViewWrapper: React.FC<StudentViewWrapperProps> = ({
                             <div className="student-pro-list">
                                 <div className="row">
 
-                                    {students.map((student) => <StudentCard link={`/students/studentview/${student.id}`} key={student.id} studentName={student.name} role='Student' src='/img/profiles/avatar-07.jpg' />)}
+                                    {students.map((student) => <StudentCard link={`/students/studentview/${student.id}`} key={student.id} studentName={`${student.first_name} ${student.last_name}`} role='Student' src='/img/profiles/avatar-07.jpg' />)}
                                 </div>
                             </div>
                         </div>

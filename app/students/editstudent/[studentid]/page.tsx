@@ -3,6 +3,7 @@ import ContentWrapper from '@/app/components/ContentWrapper'
 import Header from '@/app/components/header/Header'
 import Sidebar from '@/app/components/sidebar/Sidebar'
 import StudentEditWrapper from './StudentEditWrapper'
+import getStudentById from '@/app/actions/getStudentById'
 
 
 interface Iparams {
@@ -10,6 +11,8 @@ interface Iparams {
 }
 const StudentEdit = async ({ params }: { params: Iparams }) => {
     const user = await getUpdatedUser()
+    const student = await getStudentById(params)
+
 
     return (
         <>
@@ -21,7 +24,7 @@ const StudentEdit = async ({ params }: { params: Iparams }) => {
                 {/* Page Wrapper */}
 
                 <ContentWrapper title='Edit Students' titleActive='Edit Students' href='/students' linkTitle='Student' >
-                    <StudentEditWrapper />
+                    <StudentEditWrapper student={student!} />
                 </ContentWrapper>
 
 

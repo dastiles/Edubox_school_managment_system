@@ -10,9 +10,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model School{
+  // id String @id @default(uuid())
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  name String @unique
+  email String? @unique
+  phone String?
+  address String?
+  admins Admin[]
+
+}
+
 model Admin {
   id        String    @id @default(auto()) @map("_id") @db.ObjectId
   //id        String    @id @default(uuid())
+  schoolId String @db.ObjectId
   username  String
   password  String
   email     String    @unique
@@ -21,32 +33,59 @@ model Admin {
   phone     String?
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+  school School @relation(fields: [schoolId], references: [id], onDelete: Cascade)
   students  Student[]
   teachers  Teacher[]
+  departments Department[]
+  events Event[]
 }
 
 model Student {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  //id            String    @id @default(uuid())
-  adminId       String    @db.ObjectId
-  name          String
+ // id            String    @id @default(uuid())
+  parentId      String @db.ObjectId
+  adminId       String @db.ObjectId
+  first_name          String
+  last_name String
   address       String?
-  phone_number  String?
+  phone_number  String @unique
   password      String?
   email         String    @unique
   date_of_birth DateTime?
   gender        String?
-  medical_info  String?
+  blood_type  String?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
-  // Enrollment    Enrollment[]
+ 
   admin         Admin     @relation(fields: [adminId], references: [id], onDelete: Cascade)
+  parent        Parent    @relation(fields: [parentId], references: [id], onDelete: Cascade)
+}
+
+model Parent {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  //id            String    @id @default(uuid())
+  adminId       String
+  first_name          String
+  last_name String
+  email         String    @unique
+  phone  String    @unique
+  address       String?
+  password      String?
+  date_of_birth DateTime?
+  gender        String?
+  employer String?
+  company_phone String?
+  occupation String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  student Student[]
 }
 
 model Teacher {
-  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+   id             String    @id @default(auto()) @map("_id") @db.ObjectId
   //id             String    @id @default(uuid())
-  adminId        String    @db.ObjectId
+  adminId        String @db.ObjectId
+  staffId String
   name           String
   address        String?
   phone_number   String?
@@ -54,10 +93,57 @@ model Teacher {
   email          String?   @unique
   date_of_birth  DateTime?
   gender         String?
-  subject_taught String?
+  bio String?
+  hod Boolean @default(false)
+  department_name String? 
+  departmentId String?
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
   admin          Admin     @relation(fields: [adminId], references: [id], onDelete: Cascade)
+  department Department[]
+ staff Staff[]
+}
+
+model Department {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  //id           String     @id @default(uuid())
+  adminId      String @db.ObjectId
+  teacherId String @db.ObjectId
+  department_name String
+  department_hod String?
+  start_date DateTime?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  admin          Admin     @relation(fields: [adminId], references: [id], onDelete: Cascade)
+  department_head Teacher @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  staff Staff[]
+  
+}
+
+model Staff{
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+ //  id           String     @id @default(uuid())
+   adminId String
+   departmentId String @db.ObjectId
+   teacherId String @db.ObjectId
+   name String?
+  email String?
+  gender String?
+  phone String?
+  start_date DateTime?
+   staff Teacher @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+    department_head Department @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+}
+
+model Event{
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+ // id String @id @default(uuid())
+  adminId String @db.ObjectId
+name String
+start_date DateTime
+end_date DateTime?
+event_type String
+admin          Admin     @relation(fields: [adminId], references: [id], onDelete: Cascade)
 }
 
 // model Course {

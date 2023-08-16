@@ -15,10 +15,10 @@ export async function POST(request: Request, { params }: { params: Iparams }) {
             return new NextResponse('Something went wrong', { status: 400 })
         }
         const body = await request.json()
-        const { name, address, phone_number } = body
+        const { first_name, last_name, blood_type, address, phone_number } = body
 
-        if (!name) {
-            return new NextResponse('Name is required', { status: 400 })
+        if (!first_name || !phone_number || !last_name) {
+            return new NextResponse('Fill In required inputs', { status: 400 })
         }
 
         const regex = /^07\d{8}$/
@@ -35,7 +35,9 @@ export async function POST(request: Request, { params }: { params: Iparams }) {
             },
             data: {
 
-                name,
+                first_name,
+                last_name,
+                blood_type,
                 address,
                 phone_number,
 

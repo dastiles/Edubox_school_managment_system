@@ -14,6 +14,7 @@ const StudentView = async ({ params }: { params: Iparams }) => {
     const user = await getUpdatedUser()
     const student = await getStudentById(params)
 
+
     return (
         <>
             <div className="main-wrapper">
