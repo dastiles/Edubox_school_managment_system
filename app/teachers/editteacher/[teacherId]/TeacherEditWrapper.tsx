@@ -29,7 +29,6 @@ const TeacherEditWrapper: React.FC<TeacherEditWrapperProps> = ({ teacher }) => {
       phone_number: teacher.phone_number,
       email: teacher.email,
       date_of_birth: startDate,
-      subject_taught: teacher.bio,
     },
   });
 

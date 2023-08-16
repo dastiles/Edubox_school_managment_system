@@ -20,18 +20,11 @@ export async function POST(request: Request, { params }: { params: Iparams }) {
       name,
       address,
       phone_number,
-      subject_taught,
+
       date_of_birth,
     } = body;
 
-    if (
-      !email ||
-      !name ||
-      !phone_number ||
-      !address ||
-      !subject_taught ||
-      !date_of_birth
-    ) {
+    if (!email || !name || !phone_number || !address || !date_of_birth) {
       return new NextResponse("Please Fill in all inputs", { status: 400 });
     }
 
@@ -50,7 +43,6 @@ export async function POST(request: Request, { params }: { params: Iparams }) {
         address,
         phone_number,
         date_of_birth,
-        subject_taught,
       },
     });
     return NextResponse.json(user);
